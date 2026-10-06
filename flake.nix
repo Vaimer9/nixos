@@ -1,15 +1,25 @@
 {
-  description = "A very basic flake";
+    description = "v9 install";
 
-  inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
-  };
+    inputs = {
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
-  outputs = inputs: {
-    packages = builtins.mapAttrs (system: pkgs: {
-      hello = pkgs.hello;
+        dms = {
+            url = "github:AvengeMedia/DankMaterialShell/stable";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+    };
 
-      default = inputs.self.packages.${system}.hello;
-    }) inputs.nixpkgs.legacyPackages;
-  };
+    outputs = { self, nixpkgs, dms, ... }@inputs: {
+        nixosConfigurations.v9 = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+
+            modules = [
+                dms.nixosModules.dank-material-shell
+                ./host/configuration.nix
+                ./host/hardware.nix
+            ];
+        };
+    };
 }
