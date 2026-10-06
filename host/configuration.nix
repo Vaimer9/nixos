@@ -28,6 +28,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.zsh.enableGlobalCompInit = false;
 
   fonts.packages = with pkgs; [
     iosevka
@@ -53,11 +54,6 @@
     enable = true;
     package = pkgs.niri;
   };
-
-  programs.dms-shell = {
-    enable = true;
-    systemd.enable = true;
-  };
   
   services.displayManager.dms-greeter = {
     enable = true;
@@ -68,32 +64,10 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
-    alacritty
-    chromium
     vim
     wget
-    neovim
-    polkit_gnome
-    xdg-desktop-portal-hyprland
-    hyprlock
-    hypridle
-    fastfetch
     git
-    alacritty
-    fuzzel
-    repomix
-    wl-clipboard
     zsh
-    fzf
-    gnumake
-    discord
-    ripgrep
-    obsidian
-    kitty
-    zsh
-    legcord
-    eza
-    bat
   ];
   environment.shells = with pkgs; [ zsh ];
 

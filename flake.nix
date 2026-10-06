@@ -8,17 +8,30 @@
             url = "github:AvengeMedia/DankMaterialShell/stable";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        home-manager = {
+            url = "github:nix-community/home-manager/release-26.05";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, dms, ... }@inputs: {
+    outputs = { self, nixpkgs, dms, home-manager, ... }@inputs: {
         nixosConfigurations.v9 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
 
             modules = [
-                dms.nixosModules.dank-material-shell
                 ./host/configuration.nix
-                ./host/hardware.nix
+                home-manager.nixosModules.home-manager
+                {
+                    home-manager = {
+                        useGlobalPkgs = true;
+                        useUserPackages = true;
+                        backupFileExtension = "backup";
+                        extraSpecialArgs = { inherit inputs; };
+                        users.v9 = import ./home;
+                    };
+                }
             ];
         };
     };
