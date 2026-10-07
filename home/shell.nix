@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
     programs.zsh = {
@@ -7,23 +7,50 @@
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
 
+        autocd = true;
+
+        plugins = [
+            {
+                name = "zsh-vi-mode";
+                src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+            }
+        ];
+
         shellAliases = {
             ls = "eza";
             edit = "sudoedit";
             update = "sudo nixos-rebuild switch --flake $HOME/.config/nixos";
-        };
-
-        antidote = {
-            enable = true;
-            plugins = [
-                "zsh-users/zsh-autosuggestions"
-            ];
+            gup = "git -C $HOME/.config/nixos add . && update";
+            grep = "rg";
         };
 
         history = {
-            size = 10000;
-            ignoreAllDups = true;
             path = "$HOME/.history";
+        };
+    };
+
+    programs.starship = {
+        enable = true;
+        enableZshIntegration = true;
+
+        settings = {
+            format = "$git_branch$directory∮ ";
+
+            cmd_duration.disabled = true;
+            time.disabled = true;
+            os.disabled = true;
+
+            directory = {
+                truncation_length = 3;
+                home_symbol = "~";
+            };
+
+            git_branch = {
+                format = "[$branch]($style) ";
+                style = "bold green";
+            };
+
+            add_newline = false;
         };
     };
 }
