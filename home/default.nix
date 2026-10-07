@@ -9,13 +9,15 @@
 
     home.packages = with pkgs; [
 
-        # ---- Window Manager ----
+        # ---- Desktop ----
         fuzzel
         kitty
+        thunar
         polkit_gnome
 
         # ---- CLI utils ----
         neovim
+        lazygit
         repomix
         wl-clipboard
         fzf
@@ -35,4 +37,6 @@
     home.sessionVariables = {
         EDITOR = "nvim";
     };
+
+    services.udiskie.enable = true;
 }

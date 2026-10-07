@@ -10,11 +10,12 @@
         };
 
         settings = {
-            background_opacity = "0.8";
+            background_opacity = "0.9";
             scrollback_lines = 10000;
             confirm_os_window_close = 0;
             enable_audio_bell = false;
             window_padding_width = 0;
+            hide_window_decoratoins = "yes";
         };
 
         extraConfig = ''
