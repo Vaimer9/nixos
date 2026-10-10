@@ -87,7 +87,10 @@
 
     services.displayManager.ly = {
         enable = true;
-        settings.animation = "none";
+        settings = {
+            animation = "none";
+            session_log = "~/.ly_session.log";
+        };
     };
 
     # Fonts

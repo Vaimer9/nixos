@@ -22,6 +22,8 @@
             update = "sudo nixos-rebuild switch --flake $HOME/.config/nixos";
             gup = "git -C $HOME/.config/nixos add . && update";
             grep = "rg";
+            lg = "lazygit";
+            cpts = "repomix --stdout | wl-copy";
         };
 
         history = {

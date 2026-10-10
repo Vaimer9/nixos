@@ -14,6 +14,8 @@
         kitty
         thunar
         polkit_gnome
+        playerctl
+        brightnessctl
 
         # ---- CLI utils ----
         neovim
