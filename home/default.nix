@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
     imports = [ ./shell.nix ./git.nix ./terminal.nix ./fonts.nix ./dms.nix ];
@@ -34,6 +34,7 @@
         obsidian
         spotify
         legcord
+        inputs.spotifast.packages.${pkgs.system}.default
     ];
 
     home.sessionVariables = {

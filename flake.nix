@@ -13,9 +13,14 @@
             url = "github:nix-community/home-manager/release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        spotifast = {
+            url = "github:crmne/spotifast";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, dms, home-manager, ... }@inputs: {
+    outputs = { self, nixpkgs, dms, home-manager, spotifast, ... }@inputs: {
         nixosConfigurations.v9 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
