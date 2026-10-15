@@ -16,6 +16,7 @@
         polkit_gnome
         playerctl
         brightnessctl
+        xwayland-satellite
 
         # ---- CLI utils ----
         neovim
@@ -34,7 +35,10 @@
         obsidian
         spotify
         legcord
+    
+        # Input packages
         inputs.spotifast.packages.${pkgs.system}.default
+        inputs.nix-auth.packages.${pkgs.system}.default
     ];
 
     home.sessionVariables = {
@@ -42,4 +46,26 @@
     };
 
     services.udiskie.enable = true;
+
+    programs.direnv = {
+        enable = true;
+        nix-direnv.enable = true;
+    };
+
+    systemd.user.services.xwayland-satellite = {
+        Unit = {
+            Description = "Xwayland satellite";
+            PartOf = [ "graphical-session.target" ];
+            After = [ "graphical-session.target" ];
+        };
+        Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+            Restart = "on-failure";
+            RestartSec = 3;
+        };
+        Install = {
+            WantedBy = [ "graphical-session.target" ];
+        };
+    };
 }

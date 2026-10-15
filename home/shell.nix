@@ -37,6 +37,7 @@
 
         settings = {
             format = "$git_branch$directory∮ ";
+            right_format = "$nix_shell";
 
             cmd_duration.disabled = true;
             time.disabled = true;
@@ -48,7 +49,7 @@
             };
 
             git_branch = {
-                format = "[$branch]($style) ";
+                format = "[($branch)]($style) ";
                 style = "bold green";
             };
 

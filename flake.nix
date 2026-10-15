@@ -18,9 +18,14 @@
             url = "github:crmne/spotifast";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nix-auth = {
+            url = "github:numtide/nix-auth";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, dms, home-manager, spotifast, ... }@inputs: {
+    outputs = { self, nixpkgs, dms, home-manager, spotifast, nix-auth, ... }@inputs: {
         nixosConfigurations.v9 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };

@@ -118,4 +118,14 @@
     # SSH / keyring
     programs.ssh.startAgent = true;
     services.gnome.gcr-ssh-agent.enable = false;
+
+    # Apps
+    services.flatpak.enable = true;
+
+    programs.steam = {
+        enable = true;
+        # package = pkgs.steam.override {
+        #     extraArgs = "-system-composer";
+        # };
+    };
 }
