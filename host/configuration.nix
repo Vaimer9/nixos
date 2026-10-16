@@ -121,6 +121,7 @@
 
     # Apps
     services.flatpak.enable = true;
+    networking.firewall.allowedUDPPorts = [ 34197 ];
 
     programs.steam = {
         enable = true;
