@@ -29,12 +29,15 @@
         eza
         bat
         fastfetch
+        tree-sitter
 
         # ---- Slop ----
         chromium
         obsidian
         spotify
         legcord
+        stremio-linux-shell
+        modrinth-app
     
         # Input packages
         inputs.spotifast.packages.${pkgs.system}.default
