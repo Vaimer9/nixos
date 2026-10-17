@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-    imports = [ ./shell.nix ./git.nix ./terminal.nix ./fonts.nix ./dms.nix ];
+    imports = [ ./shell.nix ./git.nix ./terminal.nix ./fonts.nix ./dms.nix ./nvf.nix ];
 
     home.username = "v9";
     home.homeDirectory = "/home/v9";
@@ -19,7 +19,6 @@
         xwayland-satellite
 
         # ---- CLI utils ----
-        neovim
         lazygit
         repomix
         wl-clipboard
@@ -29,7 +28,6 @@
         eza
         bat
         fastfetch
-        tree-sitter
 
         # ---- Slop ----
         chromium

@@ -23,9 +23,14 @@
             url = "github:numtide/nix-auth";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+
+        nvf = {
+            url = "github:NotAShelf/nvf";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, dms, home-manager, spotifast, nix-auth, ... }@inputs: {
+    outputs = { self, nixpkgs, dms, home-manager, spotifast, nix-auth, nvf, ... }@inputs: {
         nixosConfigurations.v9 = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
